@@ -1,7 +1,10 @@
 "use client";
 
-import { AppContext, ContextModaldashboard } from "@/context/context";
-import { useContext } from "react";
+
+import { ContextModal } from "@/provider/providerModal";
+// import { AppContext, ContextModaldashboard } from "@/context/context";
+import { createContext, useContext, useState } from "react";
+
 
 type IInput = {
     placeholder?: string;
@@ -30,7 +33,8 @@ const Button = ({ text }: IButton) => {
 };
 
 const ModelNewProject = () => {
-    const { isOpen, setIsOpen } = useContext(ContextModaldashboard);
+    const { isOpen, setIsOpen }: any = useContext(ContextModal)
+    console.log(isOpen);
     return (
         <section className="flex justify-center items-center h-screen backdrop-blur-sm">
             <div className="w-96 border border-black p-10 space-y-5">
