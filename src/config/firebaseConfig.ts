@@ -28,9 +28,9 @@ const firebaseConfig = {
 const firebase_app = getApps().length === 0 ? firebase.initializeApp(firebaseConfig) : getApps()[0];
 const auth = getAuth(firebase_app);
 const googleAuth = new GoogleAuthProvider();
-const database = getDatabase(firebase_app)
-const uid = auth.currentUser?.uid
-const RealtimeDB = getDatabase();
-const firestoreDB = getFirestore(firebase_app);
+// const database = getDatabase(firebase_app)
+// const uid = auth.currentUser?.uid
+// const RealtimeDB = getDatabase();
+// const firestoreDB = getFirestore(firebase_app);
 
-export { firebaseConfig, app, auth, googleAuth, uid, database, firestoreDB};
+export { firebaseConfig, app, auth, googleAuth };

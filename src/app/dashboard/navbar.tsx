@@ -1,25 +1,49 @@
 "use client";
 /* eslint-disable @next/next/no-img-element */
 import { Pencil, GearSix, Clock } from "@phosphor-icons/react";
-import { SetStateAction, useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+
+// type TUser = {
+//     name: string,
+//     email: string,
+//     photoUrl: string
+// }
 
 export const Navbar = () => {
-    // TODO: criar fetch do usuario logado
+    const [user, setUser]: any = useState({
+        name: "",
+        email: "",
+        photoURL: "",
+    });
+
+    useEffect(() => {
+        const getLocalStorageData = () => {
+            const name = localStorage.getItem("user");
+            const email = localStorage.getItem("email");
+            const photoURL = localStorage.getItem("photoURL");
+            return { name, email, photoURL };
+        };
+        const { name, email, photoURL } = getLocalStorageData();
+        setUser({ name, email, photoURL });
+    }, []);
+
     return (
-        <section className="relative container mx-auto space-y-5 mb-5">
+        <nav className="relative container mx-auto space-y-5 mb-5">
             <div className="space-y-5 flex justify-between">
                 <div className="flex items-center pt-5">
                     {/* avatar section */}
 
-                    <div className="flex items-center gap-3" >
+                    <div className="flex items-center gap-3">
                         <img
                             className="rounded-full w-10"
-                            src=''
+                            src={user.photoURL}
                             alt="profile"
                         />
                         <div className="">
-                            <p className="text-black text-base">Joel Junior</p>
-                            <p className="text-zinc-400 text-sm">joel@gmail.com</p>
+                            <p className="text-black text-base">{user.name}</p>
+                            <p className="text-zinc-400 text-sm">
+                                {user.email}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -46,6 +70,6 @@ export const Navbar = () => {
             {/* <div className="flex justify-end">
                 <button className="bg-blue-500 w-44 py-2">New Project</button>
             </div> */}
-        </section>
+        </nav>
     );
 };
